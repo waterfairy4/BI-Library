@@ -23,7 +23,7 @@ header>img{
    transform: rotate(12deg);
 }
 #bookinfo{
-    display:flex;
+    display:none;
     align-items: center;
     justify-content: center;
     background-color:  #f2f2f2;
@@ -49,7 +49,7 @@ fieldset>label{
 }
 #bookinfo>button{
     color:rgb(93, 93, 93);
-    background-color: lightcoral;
+    background-color:  rgb(245, 210, 210);
     border:  rgb(93, 93, 93) solid 0.15em;
     padding:1em;
     border-radius: 10px;
@@ -58,11 +58,18 @@ fieldset>label{
     margin-left:200px;
 }
 main>table, th, td {
+    
+    /* 
     border: 1px solid;
-    /* margin-right:25px; */
+    margin-right:25px; */
      /* margin-left: 500px; */
        /* margin-right:25px;   */
     height:25px;
+  }
+  main>table{
+    border-spacing: 20px;
+
+    
   }
 
 
@@ -77,14 +84,18 @@ main{
      /* height:25px; */
     /* width:100%; */
     padding-top:50px;
-    background-color: rgb(255, 205, 248);
+    background-color: rgb(245, 210, 210);
     justify-content: center;
     flex:7;
 }
 aside{
     /* flex-direction: column; */
-    padding-left:70px;
+    display: flex;
+    flex-direction: column;
     background-color: gray;
+    color:#f7f4f2;
+    font-size: large;
+    padding-top: 20px;
     /* position: relative;
   float:right; */
    /* width:170px;   */
@@ -92,13 +103,15 @@ aside{
    /* justify-self: center; */
   /* top: 0px; 
     bottom: 0px;  */
-    flex:1;
+    flex:1.5;
+    align-items: center;
 }
 main>button{
-    height:40px;
-    margin-left:25px;
+    height:50px;
+    margin:15px;
+    margin-top: 8px;
     color:rgb(93, 93, 93);
-    background-color: lightcoral;
+    background-color: #f7f4f2;
     border:  rgb(93, 93, 93) solid 0.15em;
     padding:1em;
     border-radius: 10px;

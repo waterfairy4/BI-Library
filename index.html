@@ -5,31 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>Library</title>
 </head>
 <body>
     <header>
         <h1>LIBRARY</h1>
-        <img src="images/icons8-add-book-50 (2).png" alt="bookiconplus">
+        <img id="show_hide" src="images/icons8-add-book-50 (2).png" alt="bookiconplus">
     </header>
     <section id="bookinfo">
         <fieldset>
             <label for="title">TITLE</label>
-            <input type="text" name="Title" id="title">
+            <input type="text" name="Title" id="title"
+            pattern="[A-Za-z]+[A-Za-z -]+"
+            required>
         </fieldset>
          <fieldset>
             <label for="author">AUTHOR</label>
-            <input type="text" name="Author" id="author">
+            <input type="text" name="Author" id="author" pattern="[A-Za-z]+[A-Za-z -]+" required>
          </fieldset>
          <fieldset>
             <label for="pages">NUMBER OF PAGES</label>
-            <input type="number" name="Number of Pages" id="pages">
+            <input type="number" min=1 max=10000 name="Number of Pages" id="pages" required >
          </fieldset>
          <span id="checkbox">
-        <input type="checkbox" name="Read Check" id="readcheck"> 
-         <label for="readcheck">I have already read this book!</label>
+        <input type="checkbox" name="Read Check" id="bookread" required > 
+         <label for="bookread">I have already read this book!</label>
         </span>
-         <button id="addBook">ADD A NEW BOOK</button>
+         <button id="addBook" onclick="addbook()">ADD A NEW BOOK</button>
     </section>
     <section id="main-section">
         <aside id="library-info">
