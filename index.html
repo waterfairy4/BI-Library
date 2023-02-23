@@ -14,11 +14,11 @@
         <img id="show_hide" src="images/icons8-add-book-50 (2).png" alt="bookiconplus">
     </header>
     <section id="bookinfo">
-        <form id="form" action="" method="get">
+        <form id="form" onsubmit="addbook();return false" method="post">
         <fieldset>
             <label for="title">TITLE</label>
             <input type="text" name="Title" id="title"
-            pattern="[A-Za-z -]+"
+            pattern="[A-Za-z0-9 ]+"
             required>
         </fieldset>
          <fieldset>
@@ -59,11 +59,11 @@
       <table id="books-list">
         <thead id="books-requirements">
           <tr>
-             <td>TITLE</td>
-             <td>AUTHOR</td>
-             <td>PAGES</td>
-             <td>STATUS</td>
-             <td>REMOVE</td>
+             <th>TITLE</th>
+             <th>AUTHOR</th>
+             <th>PAGES</th>
+             <th>STATUS</th>
+             <th>REMOVE</th>
           </tr>
         </thead>
         <tbody id="books-content">
