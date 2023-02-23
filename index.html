@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script defer src="script.js"></script>
     <title>Library</title>
 </head>
 <body>
@@ -14,10 +14,11 @@
         <img id="show_hide" src="images/icons8-add-book-50 (2).png" alt="bookiconplus">
     </header>
     <section id="bookinfo">
+        <form id="form" action="/" method="get">
         <fieldset>
             <label for="title">TITLE</label>
             <input type="text" name="Title" id="title"
-            pattern="[A-Za-z]+[A-Za-z -]+"
+            pattern="[A-Za-z -]+"
             required>
         </fieldset>
          <fieldset>
@@ -32,7 +33,9 @@
         <input type="checkbox" name="Read Check" id="bookread" required > 
          <label for="bookread">I have already read this book!</label>
         </span>
-         <button id="addBook" onclick="addbook()">ADD A NEW BOOK</button>
+        <button type="submit" id="addBook">ADD A NEW BOOK</button>
+         <!-- <button id="addBook" onclick="addbook()">ADD A NEW BOOK</button> -->
+        </form>
     </section>
     <section id="main-section">
         <aside id="library-info">
