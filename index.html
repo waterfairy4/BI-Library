@@ -18,12 +18,12 @@
         <fieldset>
             <label for="title">TITLE</label>
             <input type="text" name="Title" id="title"
-            pattern="[A-Za-z0-9 ]+"
+            pattern="[A-Za-z0-9]+[A-Za-z0-9.:-_/() ]*"
             required>
         </fieldset>
          <fieldset>
             <label for="author">AUTHOR</label>
-            <input type="text" name="Author" id="author" pattern="[A-Za-z]+[A-Za-z -]+" required>
+            <input type="text" name="Author" id="author" pattern="[A-Za-z]+[A-Za-z -.()]+" required>
          </fieldset>
          <fieldset>
             <label for="pages">NUMBER OF PAGES</label>
@@ -71,7 +71,6 @@
       </table>
       <button id="deleteall" onclick="mydelete()">Delete All</button>
     </main>
-   
 </section>
 </body>
 </html>
