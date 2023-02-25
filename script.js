@@ -1,11 +1,12 @@
-//Hiding and showing adding book part 
-
 //2.addbook icon works after 1 click
 //3.change notification of the form
-//5.update checkbox
 //6.work on the variables of the aside
 //8.add remove for each row
-//9.
+
+let BOOKS = [];
+let i=0;
+
+//Hiding and showing adding book part 
 const image = document.getElementById('show_hide');
 const section = document.getElementById('bookinfo');
 
@@ -27,11 +28,11 @@ class Book{
   }
 
 }
-let BOOKS = [];
-let i=0;
 
-// GET BOOKS FROM LOCAL STORAGE
-
+function updatebookread(){
+  localStorage.setItem('books', JSON.stringify(BOOKS));
+  getasidevalue();
+}
 
 function addbook(){
   const title=document.getElementById('title').value;
@@ -46,9 +47,10 @@ function addbook(){
   console.log(b1.author);
   BOOKS.push(b1);
   console.log(BOOKS[i]);
-   addtotable(BOOKS[i]);
-   console.log("in addbook func");
+  addtotable(BOOKS[i]);
+  console.log("in addbook func");
 }
+
 function addtotable(book1){
     // SAVE TO LOCAL STORAGE
   localStorage.setItem('books', JSON.stringify(BOOKS));
@@ -65,7 +67,7 @@ function addtotable(book1){
   const td4= document.createElement("td");
   const bookread1= document.createTextNode(book1.bookread);
   // td4.appendChild(bookread1);
-  updatecheckbox(td4,book1.bookread);
+  createcheckbox(td4,book1.bookread);
   document.getElementById('books-list').appendChild(tr);
   tr.appendChild(td1);
   tr.appendChild(td2);
@@ -73,9 +75,13 @@ function addtotable(book1){
   tr.appendChild(td4);
 
   i++;
+  console.log("added a row");
+  getasidevalue();
 
 }
 
+// GET BOOKS FROM LOCAL STORAGE
+function load(){
 if (localStorage.getItem('books') === null) {
   BOOKS = [];
 } else {
@@ -86,9 +92,10 @@ if (localStorage.getItem('books') === null) {
    addtotable(BOOKS[i]);
     console.log(BOOKS[i]);
   }
-  
 }
-function updatecheckbox(td4,read){
+}
+
+function createcheckbox(td4,read){
   var checkbox = document.createElement('input');
   checkbox.type = "checkbox";
   checkbox.setAttribute("onclick","myFunction(this)");
@@ -101,46 +108,60 @@ function updatecheckbox(td4,read){
     checkbox.checked=false;
   }
   td4.appendChild(checkbox);
+  console.log("added a row2")
 }
+
 function myFunction(index){
-   var update=parseInt(index.id);
-   console.log(update);
+  var update=parseInt(index.id);
   update=String(update);
-   console.log("after to string"+update);
-   var update2=document.getElementById(update);
-   console.log(update2);
+  var update2=document.getElementById(update);
+  console.log("before changing local storage");
+  for (let i = 0; i < localStorage.length; i++)   {
+    console.log(localStorage.key(0) + "=[" + localStorage.getItem(localStorage.key(0)) + "]" );
+   }
   // change book read result
-  console.log(BOOKS[update].bookread);
+  console.log(BOOKS[update].bookread); //true
   BOOKS[update].bookread=update2.checked;
-  console.log(BOOKS[update].bookread);
-  var ilayda = BOOKS[update].bookread;
-  localStorage.setItem('BOOKS[0].bookread', ilayda );
+  console.log(BOOKS[update].bookread);//false
+  updatebookread();
+  console.log("after changing local storage");
+  for (let i = 0; i < localStorage.length; i++)   {
+    console.log(localStorage.key(0) + "=[" + localStorage.getItem(localStorage.key(0)) + "]");
+   }
   
 }
-sum=0;
+
 function mydelete(){
   for (var j= 1; j<document.getElementById('books-list').rows.length; j++) {
     document.getElementById('books-list').deleteRow(j);
-    console.log(j);
-    console.log(document.getElementById('books-list').rows.length + "ben bir lengthim");
-    sum++;
-    console.log(sum + "ben bir sumim");
     mydelete();
     if(document.getElementById('books-list').rows.length==0){
-      // localStorage.clear();
-      // location.reload();
       break;
     }
-    
-    
  }
  localStorage.clear();
  location.reload();
-//  if(document.getElementById('books-list').rows.length==1){
-//   console.log("I have to log out");
-// }
-// document.getElementById('books-list').detach();
-  // BOOKS=[];
+}
+
+function getasidevalue(){
+  const unread = document.getElementById('books-unread');
+  const read= document.getElementById('books-read');
+  let readcount=0;
+  let unreadcount=0;
+  const total = document.getElementById('total-books');
+  total.innerHTML=(document.getElementById('books-list').rows.length)-1;
+
+  for (let i = 0; i < BOOKS.length; i++) {
+    if(BOOKS[i].bookread==true){
+      readcount++;
+    }
+    else if(BOOKS[i].bookread==false){
+      unreadcount++;
+    }
+   }
+   read.innerHTML=readcount;
+   unread.innerHTML=unreadcount;
 
 }
-  //var extracheck=document.getElementById('id'+i).checked;
+load();
+getasidevalue();
