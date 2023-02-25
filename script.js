@@ -66,16 +66,11 @@ function addtotable(book1){
   const bookread1= document.createTextNode(book1.bookread);
   // td4.appendChild(bookread1);
   const td5= document.createElement("td");
-  // const remove= document.createElement('label');
-  // remove.type = "text";
-  // remove.setAttribute("onclick","myRemove(this)");
-  // remove.id = i;
-  // remove.innerHTML="Delete";
-  // td5.appendChild(remove);
   var img = document.createElement("img");
-  img.src = "images/icons8-delte-30.png";
+  img.id=i;
+  img.src = "images/icons8-delete-30.png";
   img.addEventListener('click', function handleClick() {
-    console.log(this);
+    console.log(img.id);
     myRemove(this);
   });
   td5.appendChild(img);

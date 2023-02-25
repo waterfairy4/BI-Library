@@ -121,3 +121,7 @@ main>button{
     box-shadow: #f7f4f2;
     font-weight: bold;
 }
+main>table>tr{
+
+    text-align: center;
+  }
