@@ -1,7 +1,5 @@
 //2.addbook icon works after 1 click
 //3.change notification of the form
-//6.work on the variables of the aside
-//8.add remove for each row
 
 let BOOKS = [];
 let i=0;
@@ -29,7 +27,7 @@ class Book{
 
 }
 
-function updatebookread(){
+function updatefunc(){
   localStorage.setItem('books', JSON.stringify(BOOKS));
   getasidevalue();
 }
@@ -67,12 +65,21 @@ function addtotable(book1){
   const td4= document.createElement("td");
   const bookread1= document.createTextNode(book1.bookread);
   // td4.appendChild(bookread1);
+  const td5= document.createElement("td");
+  const remove= document.createElement('label');
+  remove.type = "text";
+  remove.setAttribute("onclick","myRemove(this)");
+  remove.id = i;
+  remove.innerHTML="Delete";
+  td5.appendChild(remove);
+
   createcheckbox(td4,book1.bookread);
   document.getElementById('books-list').appendChild(tr);
   tr.appendChild(td1);
   tr.appendChild(td2);
   tr.appendChild(td3);
   tr.appendChild(td4);
+  tr.appendChild(td5);
 
   i++;
   console.log("added a row");
@@ -123,12 +130,33 @@ function myFunction(index){
   console.log(BOOKS[update].bookread); //true
   BOOKS[update].bookread=update2.checked;
   console.log(BOOKS[update].bookread);//false
-  updatebookread();
+  updatefunc();
   console.log("after changing local storage");
   for (let i = 0; i < localStorage.length; i++)   {
     console.log(localStorage.key(0) + "=[" + localStorage.getItem(localStorage.key(0)) + "]");
    }
   
+}
+
+function myRemove(index){
+  var removeindex=parseInt(index.id);
+  console.log(removeindex+"/////////////////////////////////////////////////////////////////")
+  console.log(BOOKS);
+  console.log(BOOKS[removeindex]);
+  if(BOOKS.length==1){
+    BOOKS=[];
+  }
+  else{
+    const x = BOOKS.splice(removeindex, 1);
+    console.log(x+"/////////////////////////////");
+    console.log(BOOKS);}
+    removeindex++;
+    document.getElementById('books-list').deleteRow(removeindex);
+  updatefunc();
+  console.log("after changing local storage");
+  for (let i = 0; i < localStorage.length; i++)   {
+    console.log(localStorage.key(0) + "=[" + localStorage.getItem(localStorage.key(0)) + "]");
+   }
 }
 
 function mydelete(){
